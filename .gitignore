@@ -1,0 +1,21 @@
+#entorno virtuales 
+venv/
+.env/
+
+#archivos temporales  
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+#info 
+*.egg-info/
+
+# diagramas 
+*.dot
+*.gv
+*.png
+*.svg
+
+# log 
+*.log
