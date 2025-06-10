@@ -5,6 +5,16 @@
 
 ---
 
+## Instalación
+
+El primer paso es obtener este repositorio con todos los contenidos necesarios. Para esto no basta clonar, también es necesario obtener los submódulos:
+
+```bash
+git clone --recurse-submodules <url-del-repo>
+```
+
+El segundo paso es asegurarte de que tienes Python (>=3.10) y Terraform (>=1.2) instalados, y que en tu entorno puedes usar Bash.
+
 ## Sprint 1
 
 ### Git Hooks
