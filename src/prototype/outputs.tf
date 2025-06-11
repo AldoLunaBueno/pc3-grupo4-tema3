@@ -1,5 +1,5 @@
 output "Create_clones" {
-  value       = var.count
+  value       = var.counter
   description = "Cantidad de clones generados desde el prototipo."
   
 }

@@ -4,7 +4,7 @@ variable "clon_config" {
   default     = "clon-v1"
 }
 
-variable "count" {
+variable "counter" {
   type        = number
   description = "Número de clones a crear."
   default     = 2

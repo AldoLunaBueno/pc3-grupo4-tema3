@@ -1,7 +1,7 @@
 variable "parent_name" {
   type        = string
   description = "Nombre del recurso padre"
-  default     = "Padre"
+  default     = "RecursoPadre"
 }
 
 variable "child_count" {

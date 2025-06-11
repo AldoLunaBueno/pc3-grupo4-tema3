@@ -13,7 +13,7 @@ variable "instance_name" {
 ```
 
 ```json
-variable "count" {
+variable "counter" {
   type        = bool
   description = "Permite crear la instancia."
   default     = false # no existe la instancia, por lo que se crea
