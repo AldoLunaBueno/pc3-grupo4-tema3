@@ -8,7 +8,7 @@ Trata de forma jerarquica multiples recursos como una unica unidad logica
 variable "parent_name" {
   type        = string
   description = "Nombre del recurso padre"
-  default     = "Padre"
+  default     = "RecursoPadre"
 }
 ```
 

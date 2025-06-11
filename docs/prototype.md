@@ -13,7 +13,7 @@ variable "clon_config" {
 ```
 
 ```json
-variable "count" {
+variable "counter" {
   type        = number
   description = "Número de clones a crear."
   default     = 2

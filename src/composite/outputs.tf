@@ -1,4 +1,4 @@
 output "generate_structure" {
-  value       = "Padre: ${var.nombre_padre} con ${var.cant_hijos} hijos."
+  value       = "Padre: ${var.parent_name} con ${var.child_count} hijos."
   description = "Cantidad de hijos generada en base del recurso padre."
 }
