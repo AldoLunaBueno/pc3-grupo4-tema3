@@ -1,11 +1,11 @@
 variable "instance_name" {
   type        = string
   description = "Nombre de la instancia."
-  default     = ""
+  default     = "test-singleton"
 }
 
-variable "counter" {
-  type        = bool
-  description = "Permite crear la instancia."
-  default     = false # no existe la instancia, por lo que se crea
+variable "instance_type" {
+  type        = string
+  description = "Tipo de instancia."
+  default     = "basic"
 }
