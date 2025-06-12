@@ -2,6 +2,14 @@
 venv/
 .env/
 
+# terraform
+*.terraform
+*.terraform.lock.hcl
+*terraform.tfstate*
+
+# archivos generados
+*.json
+
 #archivos temporales  
 __pycache__/
 *.pyc
