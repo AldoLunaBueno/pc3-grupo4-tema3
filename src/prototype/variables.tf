@@ -1,11 +1,9 @@
-variable "clon_config" {
-  type        = string
-  description = "Prototipo general de cada clon"
-  default     = "clon-v1"
+variable "name" {
+  type    = string
+  default = "mi_clon"
 }
 
-variable "counter" {
-  type        = number
-  description = "Número de clones a crear."
-  default     = 2
+variable "env" {
+  type    = string
+  default = "entorno_basico"
 }
