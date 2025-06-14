@@ -1,11 +1,26 @@
-variable "resource_type" {
+variable "factory_type" {
   type        = string
-  description = "Tipo de recurso a crear ('local', 'web', 'VM')."
-  default     = "local"
+  description = "El tipo de producto a crear. Valores válidos: 'local_file' o 'random_id'."
+  validation {
+    condition     = contains(["local_file", "random_id"], var.factory_type)
+    error_message = "El valor de factory_type debe ser 'local_file' o 'random_id'."
+  }
 }
 
-variable "product_count" {
+variable "file_name" {
+  type        = string
+  description = "Nombre del archivo a crear si factory_type es 'local_file'."
+  default     = "default.txt"
+}
+
+variable "file_content" {
+  type        = string
+  description = "Contenido del archivo a crear."
+  default     = "Archivo por defecto."
+}
+
+variable "random_byte_length" {
   type        = number
-  description = "Cantidad de recursos a crear."
-  default     = 1
+  description = "Longitud en bytes para el ID aleatorio si factory_type es 'random_id'."
+  default     = 8
 }
