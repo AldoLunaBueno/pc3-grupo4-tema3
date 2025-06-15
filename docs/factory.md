@@ -1,8 +1,11 @@
-# Patron Factory
+# Factory
 
-Encapsula la logica de creacion de modulos, centraliza su instanciacion a base de los parametros que requiera el recurso
+El patrón Factory encapsula la creación de objetos, delegando esta responsabilidad a una función o clase que decide qué objeto devolver según ciertos parámetros.
+Su propósito es desacoplar la lógica de construcción del código cliente. Con esto se evita dependencias directas con clases concretas y facilita la extensibilidad del sistema.
 
-## Variables
+> Una nota adicional es que este patrón es un gran ejemplo de aplicación del principio de inversión de dependencia (DIP).
+
+### Variables
 
 ```json
 variable "resource_type" {
@@ -20,3 +23,19 @@ variable "product_count" {
 }
 ```
 
+### Outputs
+
+```json
+output "create_resource" {
+  value       = var.resource_type
+  description = "Tipo de recurso generado por la fábrica."
+}
+```
+
+## Ejemplo de invocacion
+
+```bash
+cd ./src/factory
+terraform init
+terraform apply -auto-approve
+```
