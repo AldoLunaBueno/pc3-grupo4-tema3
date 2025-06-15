@@ -39,7 +39,7 @@ resource "null_resource" "step3_deploy_app" {
     timestamp   = timestamp()
   }
 
-  # Este paso depende de que el paso 2 se haya completado
+  # depende del paso 2
   depends_on = [
     null_resource.step2_configure_network
   ]

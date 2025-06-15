@@ -42,18 +42,4 @@ build_steps:
       instance_name: "global-logging-service"
       instance_type: "enterprise"
 
-  # EJEMPLOS DE PASOS DE DESTRUCCIÓN (DESCOMENTAR CON CUIDADO) 
-  # - name: "97-cleanup-singleton-pattern"
-  #   description: "Limpia la infraestructura del patrón Singleton."
-  #   directory: "../singleton" # Ruta relativa desde src/builder/
-  #   action: "destroy"
-
-  # - name: "98-cleanup-factory-pattern"
-  #   description: "Limpia la infraestructura del patrón Factory."
-  #   directory: "../factory"   # Ruta relativa desde src/builder/
-  #   action: "destroy"
-
-  # - name: "99-cleanup-builder-pattern"
-  #   description: "Limpia la infraestructura del patrón Builder (este mismo módulo)."
-  #   directory: "."            # Ruta relativa desde src/builder/
-  #   action: "destroy"
+ 
