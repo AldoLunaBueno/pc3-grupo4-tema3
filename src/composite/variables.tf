@@ -1,11 +1,15 @@
-variable "parent_name" {
+variable "name" {
   type        = string
   description = "Nombre del recurso padre"
   default     = "RecursoPadre"
 }
 
-variable "child_count" {
-  type        = number
-  description = "Cantidad de recursos hijo a crear."
-  default     = 5
+variable "enable_subtask1" {
+    type = bool
+    default = true
+}
+
+variable "enable_subtask2" {
+    type = bool
+    default = true
 }
