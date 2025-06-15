@@ -1,14 +1,21 @@
-resource "null_resource" "parent_resource" {
+resource "null_resource" "crucial_task" {
   triggers = {
-    parent_name = var.parent_name
+    name = var.name
+  }
+
+  provisioner "local-exec" {
+    command = "echo Ejecutando tarea principal: ${var.name}"
   }
 }
 
-resource "null_resource" "childs_resources" {
-  count = var.child_count
+module "subtask1" {
+  source = "./modules/subtask1"
+  enable_subtask = var.enable_subtask1
+  parent_name   = var.name
+}
 
-  triggers = {
-    id    = count.index
-    parent = var.parent_name
-  }
+module "subtask2" {
+  source = "./modules/subtask2"
+  enable_subtask = var.enable_subtask2
+  parent_name   = var.name
 }
