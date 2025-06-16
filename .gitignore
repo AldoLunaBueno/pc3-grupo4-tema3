@@ -27,3 +27,6 @@ __pycache__/
 
 # log 
 *.log
+
+# setup
+.setup_done
