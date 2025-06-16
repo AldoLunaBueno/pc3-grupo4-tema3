@@ -2,7 +2,7 @@
 import argparse
 import os
 
-def generate_diagram(pattern: str, output: str):
+def generar_diagrama(pattern: str, output: str):
     """
     Genera un diagrama de la infraestructura hecha con Terraform.
     Ejecuta el comando 'terraform graph' en el directorio correspondiente al patrón
@@ -16,7 +16,7 @@ def generate_diagram(pattern: str, output: str):
     name, _, ext = output.rpartition(".")
     
     # ejecuta terraform graph y lo pasa por dot para generar la imagen
-    os.system(f"terraform -chdir=../src/{pattern} graph | dot -T{ext} -o {output}")
+    os.system(f"terraform -chdir=../src/{pattern} graph | dot -T{ext} -o ../docs/{output}")
     
     print("Patrón: ", pattern)
     print("Archivo de salida: ", output)
@@ -47,4 +47,4 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    generate_diagram(args.pattern, args.output)
+    generar_diagrama(args.pattern, args.output)
