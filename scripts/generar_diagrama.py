@@ -16,7 +16,7 @@ def generar_diagrama(pattern: str, output: str):
     name, _, ext = output.rpartition(".")
     
     # ejecuta terraform graph y lo pasa por dot para generar la imagen
-    os.system(f"terraform -chdir=../src/{pattern} graph | dot -T{ext} -o ../docs/{output}")
+    os.system(f"terraform -chdir=../iac_patterns/{pattern} graph | dot -T{ext} -o ../docs/{output}")
     
     print("Patrón: ", pattern)
     print("Archivo de salida: ", output)

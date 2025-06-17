@@ -14,7 +14,7 @@ def generate_documentation():
 		os.makedirs("docs")
 
 	# dirección donde buscara archivos
-	path = "../src"
+	path = "../iac_patterns"
 
 	# enlista todos los nombres de los archivos dentro de path
 	dir_list = os.listdir(path)
@@ -77,13 +77,13 @@ def generate_documentation():
 			instructions = {
 				"singleton": [
 					"```bash\n",
-					"cd ./src/singleton\n",
+					"cd ./iac_patterns/singleton\n",
 					"terraform init\n",
 					"terraform apply -auto-approve\n",
 					"```\n\n",
 					"- **Verificacion de instancia creada**\n\n",
 					"```bash\n",
-					"# en ./src/singleton\n",
+					"# en ./iac_patterns/singleton\n",
 					"cd scripts\n",
 					"chmod +x singleton.sh\n",
 					"./singleton.sh\n",
@@ -92,13 +92,13 @@ def generate_documentation():
 				"prototype": [
 					"- **Generas el prototipo a base de la plantilla ubicada en `./prototype/templates`**\n\n",
 					"```bash\n",
-					"cd ./src/prototype\n",
+					"cd ./iac_patterns/prototype\n",
 					"terraform init\n",
 					"terraform apply -auto-approve\n",
 					"```\n\n",
 					"- **A base de esta plantilla se generan clones.**\n\n",
 					"```bash\n",
-					"# en ./src/prototype\n",
+					"# en ./iac_patterns/prototype\n",
 					"cd scripts\n",
 					"# crea 1 clon\n",
 					"python clone_prototype.py\n",
@@ -106,21 +106,21 @@ def generate_documentation():
 				],
 				"factory": [
 					"```bash\n",
-					"cd ./src/factory\n",
+					"cd ./iac_patterns/factory\n",
 					"terraform init\n",
 					"terraform apply -auto-approve\n",
 					"```\n"
 				],
 				"composite": [
 					"```bash\n",
-					"cd ./src/composite\n",
+					"cd ./iac_patterns/composite\n",
 					"terraform init\n",
 					"terraform apply -auto-approve\n",
 					"```\n"
 				],
 				"builder": [
 					"```bash\n",
-					"cd ./src/builder\n",
+					"cd ./iac_patterns/builder\n",
 					"terraform init\n",
 					"terraform apply -auto-approve\n",
 					"```\n"

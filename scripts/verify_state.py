@@ -37,7 +37,7 @@ def parse_resources(content: Dict):
 
 
 # Busca y lee todos los archivos de estado terraform.tfstate en src/
-path = "../src"
+path = "../iac_patterns"
 dir_list = os.listdir(path)
 whole_state = {"whole_state": []}
 for directory in dir_list:

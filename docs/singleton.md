@@ -32,7 +32,7 @@ output "create_instance" {
 ## Ejemplo de invocacion
 
 ```bash
-cd ./src/singleton
+cd ./iac_patterns/singleton
 terraform init
 terraform apply -auto-approve
 ```
@@ -40,7 +40,7 @@ terraform apply -auto-approve
 - **Verificacion de instancia creada**
 
 ```bash
-# en ./src/singleton
+# en ./iac_patterns/singleton
 cd scripts
 chmod +x singleton.sh
 ./singleton.sh

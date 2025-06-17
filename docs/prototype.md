@@ -33,7 +33,7 @@ output "create_clon" {
 - **Generas el prototipo a base de la plantilla ubicada en `./prototype/templates`**
 
 ```bash
-cd ./src/prototype
+cd ./iac_patterns/prototype
 terraform init
 terraform apply -auto-approve
 ```
@@ -41,7 +41,7 @@ terraform apply -auto-approve
 - **A base de esta plantilla se generan clones.**
 
 ```bash
-# en ./src/prototype
+# en ./iac_patterns/prototype
 cd scripts
 # crea 1 clon
 python clone_prototype.py
