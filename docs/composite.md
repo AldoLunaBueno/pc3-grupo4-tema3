@@ -32,7 +32,7 @@ output "generate_structure" {
 ## Ejemplo de invocacion
 
 ```bash
-cd ./src/composite
+cd ./iac_patterns/composite
 terraform init
 terraform apply -auto-approve
 ```

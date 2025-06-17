@@ -35,7 +35,7 @@ output "create_resource" {
 ## Ejemplo de invocacion
 
 ```bash
-cd ./src/factory
+cd ./iac_patterns/factory
 terraform init
 terraform apply -auto-approve
 ```

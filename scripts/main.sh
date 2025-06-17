@@ -4,7 +4,7 @@ set -e
 
 # --- Configuración ---
 PATTERNS=(builder singleton composite factory prototype)
-SRC_DIR="./src"
+SRC_DIR="./iac_patterns"
 VENV_DIR=".venv"
 REQUIREMENTS="requirements.txt"
 HOOKS_DIR="git-hooks"

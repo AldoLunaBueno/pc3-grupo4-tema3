@@ -42,7 +42,7 @@ output "create_builder" {
 ## Ejemplo de invocacion
 
 ```bash
-cd ./src/builder
+cd ./iac_patterns/builder
 terraform init
 terraform apply -auto-approve
 ```
