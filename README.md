@@ -135,6 +135,47 @@ main.sh --pattern singleton
 # ejecuta el ejemplo de creación de instancia.
 ```
 
+### Builder
+
+#### 1. `build_config.yaml`
+
+Automatiza la ejecución secuencial de módulos definidos en build_config.yaml
+
+* `global_settings:`: Ajusta el comando Terraform (`terraform_command`) y el flag `-auto-approve`.  
+* `build_steps:`: Es la lista de pasos con:
+  * `name`, `directory` y `action` 
+  * Bloques `variables:` que se convierten en `-var="clave=valor"` .
+
+#### 2. `main.tf`
+
+Orquesta `null_resource` con triggers y dependencias:
+
+* `step1_initialize_env`: Inicializa el entorno base según configuración e incluye timestamp() para volver a ejecutar.
+
+* `step2_configure_network` : Configura la red con el cidr_block y número de subredes.
+
+* `step3_deploy_app` : Despliega la aplicación con nombre y versión especificados; depende de step2.
+
+#### 3. `builder.sh`
+
+Lee `build_config.yaml` y ejecuta cada paso secuencialmente:
+
+* Parseo de `global_settings:` para ajustar `TERRAFORM_CMD` y `AUTO_APPROVE_FLAG`.  
+* Extracción de `build_steps:` con recuento de pasos y lectura de variables.  
+* Para cada paso:
+  1. `terraform init` (con reintentos silenciosos).  
+  2. Genera argumentos `-var="clave=valor"` y lanza `terraform <action>`.  
+  3. Imprime `[BUILD_SCRIPT_INFO]` o `[BUILD_SCRIPT_ERROR]` según el resultado.  
+
+### Ejecución
+
+```bash
+bash builder.sh
+# o
+main.sh --pattern builder
+
+
+
 ### 2. Prototype
 
 ## Sprint 3
