@@ -3,7 +3,7 @@ skips:
   - B307  #inseguro uso de hash 
 
 targets:
-  - src/diagrams/generar_diagrama.py
+  - src/diagrams/generate_diagram.py
 
 output-format: txt
 quiet: False

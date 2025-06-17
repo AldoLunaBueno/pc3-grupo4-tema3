@@ -2,7 +2,7 @@
 import argparse
 import os
 
-def generar_diagrama(pattern: str, output: str):
+def generate_diagram(pattern: str, output: str):
     """
     Genera un diagrama de la infraestructura hecha con Terraform.
     Ejecuta el comando 'terraform graph' en el directorio correspondiente al patrón
@@ -47,4 +47,4 @@ def parse_args():
 
 if __name__ == "__main__":
     args = parse_args()
-    generar_diagrama(args.pattern, args.output)
+    generate_diagram(args.pattern, args.output)

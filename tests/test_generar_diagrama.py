@@ -1,7 +1,7 @@
 import io
 import sys
 import pytest
-from scripts.generar_diagrama import parse_args, generar_diagrama
+from scripts.generate_diagram import parse_args, generate_diagram
 
 def test_parse_args_minimal(tmp_path, monkeypatch):
     """
@@ -12,7 +12,7 @@ def test_parse_args_minimal(tmp_path, monkeypatch):
     monkeypatch.setenv("PYTHONWARNINGS", "ignore")
 
     # Simular argumentos pasados por consola
-    sys_argv = ["generar_diagrama.py", "-p", "singleton"]
+    sys_argv = ["generate_diagram.py", "-p", "singleton"]
     monkeypatch.setattr(sys, "argv", sys_argv)
 
     # Ejecutar el parser de argumentos
@@ -21,13 +21,13 @@ def test_parse_args_minimal(tmp_path, monkeypatch):
     assert args.pattern == "singleton"
     assert args.output == "diagram.png"
 
-def test_generar_diagrama_prints_correctly(capsys):
+def test_generate_diagram_prints_correctly(capsys):
     """
-    Comprobar que la función generar_diagrama imprima correctamente
+    Comprobar que la función generate_diagram imprima correctamente
     el mensaje con el nombre del patrón y el archivo de salida.
     """
 
-    generar_diagrama("factory", "out.png")
+    generate_diagram("factory", "out.png")
 
     captured = capsys.readouterr()
 
