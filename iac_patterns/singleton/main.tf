@@ -16,7 +16,7 @@ resource "null_resource" "instance" {
   triggers = {
     instance_name = var.instance_name
     instance_type = var.instance_type
-    instance_tag  = var.instance_tag
+    tag           = timestamp()
   }
 
   provisioner "local-exec" {

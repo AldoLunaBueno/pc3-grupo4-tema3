@@ -16,9 +16,3 @@ variable "instance_enabled" {
   default     = true
   description = "Habilita/deshabilita la creación de la instancia."
 }
-
-variable "instance_tag" {
-  type        = string
-  description = "Etiqueta global para la instancia."
-  default     = "default-tag"
-}

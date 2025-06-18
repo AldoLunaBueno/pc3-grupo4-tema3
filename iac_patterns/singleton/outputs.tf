@@ -1,7 +1,7 @@
 output "create_instance" {
   # 1: true , 0: false
-  value       = var.instance_enabled ? "Recurso ${var.instance_name} creada con exito." : "Instancia deshabilitada."
-  description = "Estado de creación."
+  value       = var.instance_enabled ? "${var.instance_name} habilitada." : "${var.instance_name} deshabilitada."
+  description = "Estado de la instancia."
 }
 
 output "singleton_status" {

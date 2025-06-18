@@ -25,7 +25,7 @@ echo "Obteniendo outputs..."
 CREATE_INSTANCE_OUTPUT=$(terraform output -raw create_instance)
 SINGLETON_STATUS_OUTPUT=$(terraform output -json singleton_status)
 
-if [[ "$CREATE_INSTANCE_OUTPUT" == *"creada con exito"* ]]; then
+if [[ "$CREATE_INSTANCE_OUTPUT" == *"habilitada."* ]]; then
   echo "[OK] Output de creación correcto."
 else
   echo "[ERROR] Output de creación inesperado."
@@ -39,7 +39,7 @@ echo "Validando limpieza del LOCK_FILE..."
 if [ ! -f "$LOCK_FILE" ]; then
   echo "[ERROR] LOCK_FILE eliminado correctamente."
 else
-  echo "[OK] LOCK_FILE aún existe tras destruir la infra."
+  echo "[OK] LOCK_FILE aún existe tras destruir la infraestructura."
   exit 1
 fi
 
