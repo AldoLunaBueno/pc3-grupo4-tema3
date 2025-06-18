@@ -98,29 +98,47 @@ Generación de submodulos para simular uso de futuros módulos externalizados.
 
 ### Singleton
 
+Este módulo se encarga de la creación de una instancia única de un recurso, esta puede ser llamada desde diferentes módulos (**globalizada**) y solo puede instanciarse una vez durante el ciclo de vida de la infraestructura.
+
+#### Ejecución
+
+```bash
+cd scripts # en carpeta raiz
+# Llamado al módulo singleton
+./main.sh --pattern singleton
+```
+
 #### 1. `variables.tf`
 
-Define las variables de entrada para la generación de una instancia simple.
+Define las variables de entrada para la generación del recurso.
 
 * `instance_name`: nombre de la instancia.
 
-* `instance_type`: tipo de instancia, por defecto es "basic".
+* `instance_type`: tipo de instancia.
+
+* `instance_enabled`: variable booleana que revisa si la instancia está o no habilitada.
 
 #### 2. `main.tf`
 
 Ejecuta un script para controlar la creación de la instancia.
 
-* Usa `null_resource` para representar la instancia única global.
-* triggers para accionar las variables `instance_name` e `instance_type`.
-* Ejecuta el script `singleton.sh` dentro de un provisioner.
+* Crea un recurso nulo que **representará** la creación de una **instancia**.
+* Acciona triggers:
+  * por cada variable (`instance_name` e `instance_type`) revisa cambios para accionar el trigger.
+  * Crea un `tag` para asegurar la existencia del lock cada que se accione el script `test_module_singleton.sh`
+* Ejecuta el script `singleton.sh` dentro de un provisioner generando un `instance.lock`.
 
 #### 3. `outputs.tf`
 
-* `create_instance` muestra el nombre de la instancia y da el visto bueno de la creación de dicha instancia.
+* `create_instance` muestra si la instancia está **habilitada** o **deshabilitada**.
 
-#### 4. `singleton.sh`
+* `singleton_status` muestra el el estado de creación del módulo.
 
-Asegura que la instancia sea única en su creación.
+#### Scripts
+
+#### 1. `singleton.sh`
+
+Script en bash que crea un archivo lock para asegurar una única instancia creada.
 
 * `LOCK_FILE` evita la creación de múltiples instancias simultaneas.
 * `PID_FILE` guarda el PID del proceso actual.
@@ -128,11 +146,15 @@ Asegura que la instancia sea única en su creación.
   * Si no existe el `lock`, lo crea y muestra su creación.
 * Limpia el `PID` al finalizar la ejecución del script.
 
-### Ejecución
+#### 2. Pruebas de integración: `test_module_singleton.sh`
+
+* Verifica la creación de `singleton.lock`.
+
+* Verifica que el `output` se ejecute correctamente.
 
 ```bash
-main.sh --pattern singleton
-# ejecuta el ejemplo de creación de instancia.
+cd iac_patterns/singleton/scripts
+./test_module_singleton.sh
 ```
 
 ### Builder
@@ -143,7 +165,7 @@ Automatiza la ejecución secuencial de módulos definidos en build_config.yaml
 
 * `global_settings:`: Ajusta el comando Terraform (`terraform_command`) y el flag `-auto-approve`.  
 * `build_steps:`: Es la lista de pasos con:
-  * `name`, `directory` y `action` 
+  * `name`, `directory` y `action`
   * Bloques `variables:` que se convierten en `-var="clave=valor"` .
 
 #### 2. `main.tf`
