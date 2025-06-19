@@ -1,8 +1,5 @@
 # Proyecto 3: "Diseño y compartición de módulos IaC con patrones de software"
 
-> Práctica calificada 3
-> Grupo 4
-
 ---
 
 ## Instalación
@@ -10,10 +7,19 @@
 El primer paso es obtener este repositorio con todos los contenidos necesarios. Para esto no basta clonar, también es necesario obtener los submódulos:
 
 ```bash
-git clone --recurse-submodules <url-del-repo>
+git clone --recurse-submodules https://github.com/AldoLunaBueno/pc3-grupo4-tema3.git
 ```
 
 El segundo paso es asegurarte de que tienes Python (>=3.10) y Terraform (>=1.2) instalados, y que en tu entorno puedes usar Bash.
+
+## Índice
+
+- [Código principal](#archivo-mainsh)
+- [Herramientas usadas](#herramientas-usadas)
+- [Git Hooks](#git-hooks)
+- [Scripts generales](#scripts-generales)
+- [Patrones de diseño](#patrones-de-diseño)
+
 
 ## Sprint 1
 
@@ -43,14 +49,19 @@ source ./main.sh --pattern <nombre-patrón>
 
 ### 1. flake8, bandit
 
-* **flake8**: Linter útil para verificar código en Python.
-* **bandit**: Herramienta de análisis de seguridad para código en python.
+* **flake8**: Verifica código en Python por incorrecta sintáxis y malas prácticas.
+* **bandit**: Analisa código en Python por posibles errores de seguridad.
+
+```bash
+flake8 -r scripts/
+bandit -r scripts/
+```
 
 ### 2. Pytest
 
 Framework de pruebas para python, usado para asegurar buenas pruebas en los scripts `verify_state.py`, `generate_documentation.py`, `generate_diagram.py`, `etc`.
 
-### Git Hooks
+## Git Hooks
 
 Tomamos la decisión de versionar los hooks para que sean más trazables y más fáciles de obtener (con git pull).
 
@@ -62,7 +73,7 @@ git config core.hooksPath git-hooks
 
 **Todos los colaboradores debemos correr este comando en nuestro repositorio local** para que los hooks funcionen y nos ayuden a no incurrir en inconsistencias en nuestros commits. Veremos más en detalle qué hace cada hook definido en [git-hooks](./git-hooks/).
 
-#### commit-msg
+### commit-msg
 
 Este hook nos ayuda a que cada mensaje de commit sea claro. La validación se hace con base en la convención [Conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). No implementamos todos los casos posibles, pero sí los más importantes. Para empezar, todos los commits deben seguir esta estructura:
 
@@ -80,13 +91,9 @@ Validamos tres puntos:
 
 También se deja lugar para un cuerpo opcional para el mensaje del commit.
 
-#### pre-commit
+### pre-commit
 
 Este hook verifica la rama sobre la que estamos haciendo commit. No se permite hacer commit sobre una rama que no siga las convenciones de ramificación usadas para este proyecto. Por ejemplo, impide que se pueda hacer un commit sobre ``main``. Actualmente, seguimos el patrón de ``Continuous Integration``, así que **solo hacemos commits sobre ramas feature/\*, hotfix/\* y docs/\***.
-
-## Scripts
-
-### 1. `verify_state.py`
 
 ## Submodulos
 
@@ -95,6 +102,40 @@ Generación de submodulos para simular uso de futuros módulos externalizados.
 ---
 
 ## Sprint 2
+
+## Scripts generales
+
+### 1. `generate_diagram.py`
+
+Genera diagramas para cada módulo.
+
+### 2. `generate_documentation.py`
+
+Genera la documentación de cada patrón de diseño **(singleton, composite, builder, prototype y factory)**.
+
+* Está dividido de la siguiente forma:
+
+```bash
+  <Titulo>
+  <Índice>
+  <Descripción-breve>
+  <Variables>
+  <Outputs>
+  <Ejecución-ejemplo>
+```
+
+### 3. `verify_ia_docs.py`
+
+Script que usa una lista de frases genéricas para verificar el porcentaje de texto copiado de páginas web, articulos, etc.
+
+### 4. `verify_state.py`
+
+Script que genera un archivo **.json** para mostrar el estado de cada módulo.
+
+> Más información de los
+> scripts en los comentarios de cada código: [Ver carpeta scripts](./scripts/)
+
+## Sprint 3
 
 ## Patrones de diseño
 
