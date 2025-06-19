@@ -3,6 +3,7 @@ import os
 import time
 import copy
 
+
 class TerraformPrototype:
     """
     Clase que representa un prototipo de archivo Terraform.
@@ -42,13 +43,13 @@ class TerraformPrototype:
         with open(output_path, "w") as file:
             file.write(self.content)
 
+
 def create_clone():
     """
     Función principal que gestiona la clonación del archivo Terraform.
     """
     # Directorio actual del script
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    
     # Subir un nivel para obtener la raíz del proyecto ("prototype/")
     base_dir = os.path.abspath(os.path.join(script_dir, ".."))
 
@@ -57,7 +58,7 @@ def create_clone():
 
     # Verifica que la plantilla exista
     if not os.path.isfile(template_tf):
-        print(f"Archivo no encontrado.")
+        print("Archivo no encontrado.")
         sys.exit(1)
 
     # Genera un timestamp para el archivo clonado
@@ -75,7 +76,8 @@ def create_clone():
     clon = prototype.clone()
     clon.save(out_path)
 
-    print(f"Archivo clonado y modificado.")
+    print("Archivo clonado y modificado.")
+
 
 if __name__ == "__main__":
     create_clone()

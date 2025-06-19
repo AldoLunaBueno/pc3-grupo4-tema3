@@ -17,6 +17,7 @@ GENERIC_PHRASES = [
     "de almacenar", "de formar", "de componer", "de componer estructuras"
 ]
 
+
 def is_generic_phrase(linea):
     """
     Analiza las frases genéricas de la lista de frases (se puede ampliar la lógica)
@@ -33,7 +34,7 @@ def is_generic_phrase(linea):
 
 def analyze_markdown(filepath):
     """
-    revisa todos los archivos de la forma docs/<patrón>.md, 
+    revisa todos los archivos de la forma docs/<patrón>.md,
     si hay similitud con las frases genéricas agrega una sospecha
     """
     total = 0
@@ -48,6 +49,7 @@ def analyze_markdown(filepath):
     porcentaje = (sospechosas / total * 100) if total > 0 else 0
     return porcentaje
 
+
 def classify(porcentaje):
     """
     Clasificación simple de porcentaje de uso de IAs o texto copiado de internet.
@@ -59,12 +61,14 @@ def classify(porcentaje):
     else:
         return "texto generado por IA."
 
+
 def main():
     for archivo in os.listdir(DOCS_DIR):
         if archivo.endswith(".md"):
             ruta = os.path.join(DOCS_DIR, archivo)
             porcentaje = analyze_markdown(ruta)
             print(f"{archivo}: {classify(porcentaje)}")
+
 
 if __name__ == "__main__":
     main()

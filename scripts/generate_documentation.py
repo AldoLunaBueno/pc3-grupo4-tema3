@@ -55,7 +55,6 @@ def generate_documentation():
 				descriptions = readme.read().strip()
 
 		with open(f"../docs/{file}.md", "w") as doc:
-
 			# doc.write(f"# Patron {file.capitalize()}\n\n")
 			doc.write(f"{descriptions}\n\n")
 			doc.write("### Variables\n\n")
@@ -72,7 +71,6 @@ def generate_documentation():
 				doc.write("```\n\n")
 
 			doc.write("## Ejemplo de invocacion\n\n")
-			
 			# Diccionario con las instrucciones específicas para cada patrón
 			instructions = {
 				"singleton": [
@@ -126,7 +124,8 @@ def generate_documentation():
 					"```\n"
 				]
 			}
-			doc.writelines(instructions.get(file, ["* Work in progress...*\n"]))
+		doc.writelines(instructions.get(file, ["* Work in progress...*\n"]))
+
 
 if __name__ == "__main__":
 	generate_documentation()
