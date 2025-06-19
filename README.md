@@ -92,6 +92,8 @@ Este hook verifica la rama sobre la que estamos haciendo commit. No se permite h
 
 Generación de submodulos para simular uso de futuros módulos externalizados.
 
+---
+
 ## Sprint 2
 
 ## Patrones de diseño
@@ -106,6 +108,13 @@ Este módulo se encarga de la creación de una instancia única de un recurso, e
 cd scripts # en carpeta raiz
 # Llamado al módulo singleton
 ./main.sh --pattern singleton
+```
+
+#### Pruebas de integración
+
+```bash
+cd iac_patterns/singleton/scripts
+./test_module_singleton.sh
 ```
 
 #### 1. `variables.tf`
@@ -152,10 +161,60 @@ Script en bash que crea un archivo lock para asegurar una única instancia cread
 
 * Verifica que el `output` se ejecute correctamente.
 
+### Prototype
+
+Este módulo genera archivos de infraestructura a base de una plantilla modificable (`example.tf`), y ejecuta el script `clone_prototype (count = n)` para crear **N** clones a base de dicha plantilla con pequeñas modificaciones en su estructura.
+
+#### Ejecución
+
 ```bash
-cd iac_patterns/singleton/scripts
-./test_module_singleton.sh
+cd scripts # en carpeta raiz
+# Llamado al módulo prototype
+./main.sh --pattern prototype
 ```
+
+#### Pruebas de integración
+
+```bash
+cd iac_patterns/prototype/scripts
+./test_module_prototype.sh
+```
+
+#### 1. `variables.tf`
+
+Define las variables de entrada para la generación del archivo principal de la creación del prototypo.
+
+* `name`: nombre del recurso creador del prototipo
+
+* env`: variable de ejemplo para denotar un entorno dentro del recurso.
+
+#### 2. `main.tf`
+
+* `create_prototype`: mensaje de creación del clón a base de la plantilla dada.
+
+* Se configura los **providers** necesarios para trabajar con archivos locales, plantillas, archivos nulos y aleatorios.
+
+* Con un local_file procesa la plantilla y la guarda en un archivo `example.tf`.
+
+* Cambia el contenido de la plantilla (`env` y `name`) para generar archivos .
+
+#### 3. `outputs.tf`
+
+* `create_prototype`: mensaje de creación del clón a base de la plantilla dada.
+
+#### Scripts
+
+##### 1. `clone_prototype.py`
+
+Script hecho para crear **N** clones a base de la plantilla `prototype.hcl.tpl`, como ejemplo se tiene la creación de solo 3 clones.
+
+##### 2. `test_module_prototype.sh`
+
+* Valida la correcta creación de la infraestructura.
+
+* Revisa que los outputs sean los correctos.
+
+* pasa las pruebas de sintaxis para terraform(`tflint`)
 
 ### Builder
 
