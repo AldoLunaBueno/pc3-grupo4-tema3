@@ -10,6 +10,6 @@ resource "null_resource" "subtask1" {
   }
 
   provisioner "local-exec" {
-    command = "echo Ejecutando tarea para ${local.name}"
+    command = "echo Ejecutando tarea para ${local.name} con prioridad ${var.task_priority} - ${var.task_description}"
   }
 }
