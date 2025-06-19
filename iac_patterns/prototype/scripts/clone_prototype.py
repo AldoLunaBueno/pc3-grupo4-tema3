@@ -2,6 +2,7 @@ import sys
 import os
 import time
 import copy
+import random
 
 
 class TerraformPrototype:
@@ -44,40 +45,47 @@ class TerraformPrototype:
             file.write(self.content)
 
 
-def create_clone():
+def create_clone(count):
     """
     Función principal que gestiona la clonación del archivo Terraform.
+    
+    args:
+        count: cantidad de clones a crear.
     """
     # Directorio actual del script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     # Subir un nivel para obtener la raíz del proyecto ("prototype/")
     base_dir = os.path.abspath(os.path.join(script_dir, ".."))
 
-    # Ruta al archivo plantilla
-    template_tf = os.path.join(base_dir, "templates", "prototype.hcl.tpl")
+    # Ruta hacia el prototipo
+    prototype_tf = os.path.join(base_dir, "templates", "prototype.hcl.tpl")
 
     # Verifica que la plantilla exista
-    if not os.path.isfile(template_tf):
-        print("Archivo no encontrado.")
+    if not os.path.isfile(prototype_tf):
+        print(f"Archivo {prototype_tf} no encontrado.")
         sys.exit(1)
 
     # Genera un timestamp para el archivo clonado
-    timestamp = time.strftime("%Y%m%d-%H%M%S")
-    clon_file = f"example_{timestamp}.tf"
-    out_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), clon_file)
+    for clon_count in range(count):
+        random_name = random.randint(1000,9999)
+        timestamp = time.strftime("%Y%m%d-%H%M%S")
+        clon_file = f"clon_{clon_count+1}.tf"
+        out_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), clon_file)
 
-    # Diccionario con las variables a reemplazar
-    replacements = {
-        "entorno_basico": f"clon_{timestamp}"
-    }
+        # Diccionario con las variables a reemplazar
+        replacements = {
+            "${name}" : f"file_{random_name}",
+            "${env}" : f"entorno_{timestamp}"
+        }
 
-    # Crea el prototipo, lo clona y guarda el resultado
-    prototype = TerraformPrototype(template_tf, replacements)
-    clon = prototype.clone()
-    clon.save(out_path)
+        # Crea el prototipo, lo clona y guarda el resultado
+        prototype = TerraformPrototype(prototype_tf, replacements)
+        clon = prototype.clone()
+        clon.save(out_path)
 
     print("Archivo clonado y modificado.")
 
 
 if __name__ == "__main__":
-    create_clone()
+    # creación de N clones a base de una plantilla
+    create_clone(3)
