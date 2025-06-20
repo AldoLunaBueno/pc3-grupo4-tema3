@@ -17,8 +17,7 @@ resource "local_file" "product_file" {
   count    = var.factory_type == "local_file" ? 1 : 0
 
   content  = var.file_content
-  # El archivo se guarda en factory_module/
-  filename = var.file_name 
+  filename = "${var.file_path_prefix}/${var.file_name}"
 }
 
 # Producto B: genera un ID aleatorio
