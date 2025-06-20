@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # === Setup ===
-LOCK_FILE="instance.lock"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOCK_FILE="$SCRIPT_DIR/../instance.lock"
 # archivo temporal para guardar el PID
 PID_FILE="/tmp/singleton_instance.pid"
 # =============
@@ -19,9 +20,9 @@ echo $$ > "$PID_FILE"
 # Sino existe la instancia, la crea. Si existe, ya no se crea. (Singleton)
 if [ ! -f "$LOCK_FILE" ]; then
     touch "$LOCK_FILE"
-    echo "Instancia creada: $LOCK_FILE"
+    echo "Instancia creada."
 else
-    echo "La instancia ya existe: $LOCK_FILE"
+    echo "La instancia ya existe."
 fi
 # ===============
 

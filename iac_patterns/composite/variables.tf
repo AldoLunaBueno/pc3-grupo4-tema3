@@ -5,11 +5,11 @@ variable "name" {
 }
 
 variable "enable_subtask1" {
-    type = bool
-    default = true
+  type    = bool
+  default = true
 }
 
 variable "enable_subtask2" {
-    type = bool
-    default = true
+  type    = bool
+  default = true
 }

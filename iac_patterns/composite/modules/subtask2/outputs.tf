@@ -6,3 +6,11 @@ output "task_name" {
 output "subtask_count" {
   value = length(null_resource.subtask2)
 }
+
+output "task_priority" {
+  value = var.task_priority
+}
+
+output "task_description" {
+  value = var.task_description
+}

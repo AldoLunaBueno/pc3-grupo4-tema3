@@ -1,3 +1,3 @@
-output "create_clon" {
-  value = "Prototipo generado con exito."
+output "create_prototype" {
+  value = "Prototipo ${var.name} generado con exito."
 }
