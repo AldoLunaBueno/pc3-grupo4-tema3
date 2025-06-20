@@ -24,3 +24,15 @@ variable "random_byte_length" {
   description = "Longitud en bytes para el ID aleatorio si factory_type es 'random_id'."
   default     = 8
 }
+
+variable "file_path_prefix" {
+  type        = string
+  description = "Prefijo de ruta para guardar el archivo local, usado solo si factory_type es 'local_file'."
+  default     = "./factory_module"
+}
+
+variable "id_prefix" {
+  type        = string
+  description = "Prefijo opcional para anteponer al ID aleatorio generado si factory_type es 'random_id'."
+  default     = ""
+}
