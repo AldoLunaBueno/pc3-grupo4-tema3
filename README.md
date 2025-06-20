@@ -295,9 +295,31 @@ Lee `build_config.yaml` y ejecuta cada paso secuencialmente:
 bash builder.sh
 # o
 main.sh --pattern builder
+```
 
+### Factory
 
+### Composite
 
-### 2. Prototype
+Este módulo ejemplifica el patrón de diseño Composite. Muestra cómo se pueden usar módulos para componer estructuras arbitrariamente profundas. Pese a todo el esfuerzo, hay dos consideraciones importantes en este caso:
 
-## Sprint 3
+1. Es una práctica desaconsejada crear árboles de una profundida mayor a 2.
+2. Terraform aún no tiene la capacidad de generar estructuras modulares recursivas dinámicamente, como es natural en el patrón Composite.
+
+El segundo punto limitó bastante poder representar fielmente el patrón. Existen alternativas, como crear los archivos y carpetas dinámicamente usando scripts de Python o Bash, pero en este proyecto no se requería esto.
+
+#### Estructura
+
+- `main.tf`: módulo raíz que ejecuta la tarea principal y delega en submódulos.
+- `modules/subtask1`, `modules/subtask2`: módulos reutilizables que pueden activarse o no.
+
+#### Variables
+
+- `name`: nombre del recurso padre.
+- `enable_subtask1`, `enable_subtask2`: habilita los submódulos.
+- `task_priority`, `task_description`: atributos adicionales de cada subtarea.
+
+#### Outputs
+
+- `generate_structure`: muestra cuántas subtareas fueron creadas.
+- `subtask_count`, `task_priority`, `task_description`: generados por cada submódulo.
