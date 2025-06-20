@@ -19,11 +19,16 @@ El segundo paso es asegurarte de que tienes Python (>=3.10) y Terraform (>=1.2) 
 - [Git Hooks](#git-hooks)
 - [Scripts generales](#scripts-generales)
 - [Patrones de diseño](#patrones-de-diseño)
+  - [Singleton](#singleton)
+  - [Prototype](#prototype)
+  - [Builder](#builder)
+  - [Composite](#composite)
 
-
-## Sprint 1
+## Videos
 
 [Link Video del Sprint_1-Grupo3](https://drive.google.com/file/d/1ZWNHv99Dbc8p1jF8iGqgm0_ftpk_M3Xp/view?usp=sharing)
+
+## Sprint 1
 
 ## Archivo `main.sh`
 
